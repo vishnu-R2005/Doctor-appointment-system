@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row g-4">
+        <!-- Your Appointments -->
+        <div class="col-md-8">
+            <div class="app-card">
+                <div class="card-header">
+                    <h2 class="mb-0">Your Appointments</h2>
+                </div>
+                <div class="card-body p-0">
+                    {% if appts %}
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Doctor</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in appts %}
+                            <tr>
+                                <td>{{ a.date.strftime('%Y-%m-%d') }}</td>
+                                <td>{{ a.time.strftime('%H:%M') }}</td>
+                                <td>{{ a.doctor.name }}</td>
+                                <td>
+                                    {% if a.status == 'pending' %}
+                                        <span class="badge bg-warning text-dark">{{ a.status }}</span>
+                                    {% elif a.status == 'approved' %}
+                                        <span class="badge bg-success">{{ a.status }}</span>
+                                    {% elif a.status == 'rejected' %}
+                                        <span class="badge bg-danger">{{ a.status }}</span>
+                                    {% elif a.status == 'cancelled' %}
+                                        <span class="badge bg-secondary">{{ a.status }}</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if a.status in ['pending','approved'] %}
+                                    <form method="post" action="{{ url_for('cancel_appointment', appt_id=a.id) }}">
+                                        <button class="btn btn-danger btn-sm" type="submit">Cancel</button>
+                                    </form>
+                                    {% else %}-{% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <div class="p-3">No appointments yet.</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Book New Appointment -->
+        <div class="col-md-4">
+            <div class="app-card h-100 text-center">
+                <div class="card-header">
+                    <h2 class="mb-0">Book New Appointment</h2>
+                </div>
+                <div class="card-body d-flex flex-column justify-content-center">
+                    <p class="mb-3">Schedule a new appointment with a doctor.</p>
+                    <a href="{{ url_for('book_appointment') }}" class="btn gradient-btn btn-lg">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

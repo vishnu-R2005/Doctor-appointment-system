@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MediConnect - Smart Health Scheduler</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar custom-navbar">
+    <div class="brand">
+      <a href="{{ url_for('index') }}">🩺 MediConnect</a>
+      <small class="tagline">Smart Health Scheduler</small>
+    </div>
+    <div>
+      {% if current_user.is_authenticated %}
+        <span class="me-2">Hi, {{ current_user.name }} ({{ current_user.role }})</span>
+        <a class="btn outline btn-sm" href="{{ url_for('dashboard') }}">Dashboard</a>
+        <a class="btn primary btn-sm" href="{{ url_for('logout') }}">Logout</a>
+
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- Flash messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-messages position-fixed top-0 start-50 translate-middle-x mt-3" style="z-index:1055;">
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }} shadow rounded-pill px-4 py-2 mb-2 text-center">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <!-- Page Content -->
+  <div class="page-wrapper">
+    {% block content %}{% endblock %}
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center text-light py-3">
+    Built by vishnu 
+  </footer>
+
+</body>
+</html>

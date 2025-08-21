@@ -1,0 +1,225 @@
+/* =======================
+   Global Styles
+   ======================= */
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #87CEEB, #FFB6C1); /* Sky Blue → Pink */
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+/* =======================
+   Navbar
+   ======================= */
+.navbar,
+.custom-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 2rem;
+    color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Default Navbar */
+.navbar {
+    background: linear-gradient(90deg, #007bff, #00c6ff);
+}
+
+/* Glassmorphism Navbar */
+.custom-navbar {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.navbar .brand a,
+.custom-navbar .brand a {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+}
+
+.custom-navbar .brand a {
+    font-size: 1.6rem;
+}
+
+.custom-navbar .tagline {
+    font-size: 0.85rem;
+    color: #f5f5f5;
+    font-weight: 300;
+    margin-left: 2px;
+}
+
+/* =======================
+   Buttons
+   ======================= */
+.btn {
+    border: none;
+    border-radius: 25px;
+    padding: 8px 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Outline Style */
+.btn.outline {
+    background: none;
+    border: 1px solid white;
+    color: white;
+}
+
+.btn.outline:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+/* Primary Gradient */
+.btn.primary,
+.btn.gradient-btn {
+    background: linear-gradient(45deg, #a1c4fd, #fcc2ff);
+    color: #333;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 25px;
+}
+
+.btn.primary:hover,
+.btn.gradient-btn:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+}
+
+/* =======================
+   Flash Messages
+   ======================= */
+.flash {
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    border-radius: 0.3rem;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.flash.success { background-color: #28a745; }
+.flash.danger { background-color: #dc3545; }
+.flash.warning { background-color: #ffc107; color: black; }
+.flash.info    { background-color: #17a2b8; }
+
+/* =======================
+   Headings
+   ======================= */
+h1 {
+    font-size: 4rem;
+    margin-bottom: 10px;
+    animation: fadeInDown 2s ease forwards;
+    text-shadow: 2px 2px 15px rgba(0,0,0,0.2);
+}
+
+h3 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    animation: fadeInUp 2s ease forwards;
+    text-shadow: 1px 1px 10px rgba(0,0,0,0.2);
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    0% {opacity: 0; transform: translateY(-50px);}
+    100% {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes fadeInUp {
+    0% {opacity: 0; transform: translateY(50px);}
+    100% {opacity: 1; transform: translateY(0);}
+}
+
+/* =======================
+   Landing Page Enter Button
+   ======================= */
+.enter-btn {
+    padding: 15px 50px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+    animation: pulse 2s infinite;
+}
+
+.enter-btn:hover {
+    transform: scale(1.1);
+    background: linear-gradient(130deg, pink, skyblue);
+}
+
+@keyframes pulse {
+    0%, 100% {transform: scale(1);}
+    50% {transform: scale(1.05);}
+}
+
+/* =======================
+   Login Card
+   ======================= */
+.login-card {
+    max-width: 420px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    animation: fadeInUp 1.2s ease;
+}
+
+.login-card .card-header {
+    background: transparent;
+    border-bottom: none;
+    font-weight: bold;
+    color: white;
+}
+
+/* =======================
+   App Card
+   ======================= */
+.app-card {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(12px);
+    padding: 1rem;
+}
+
+.app-card .card-header {
+    background: linear-gradient(45deg, #a1c4fd, #c2e9fb);
+    color: #333;
+    font-weight: 600;
+    text-align: center;
+    border-bottom: none;
+}
+
+/* =======================
+   Footer
+   ======================= */
+footer {
+    text-align: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.85);
+    margin-top: 30px;
+    border-radius: 12px 12px 0 0;
+    font-size: 0.9rem;
+    color: #444;
+}

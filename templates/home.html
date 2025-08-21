@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex flex-column justify-content-center align-items-center text-center" style="height: 80vh;">
+    <h1>MediConnect</h1>
+    <h3>Your Smart Health Scheduler</h3>
+    <button class="enter-btn mt-4" onclick="window.location.href='{{ url_for("index") }}'">Enter</button>
+</div>
+{% endblock %}

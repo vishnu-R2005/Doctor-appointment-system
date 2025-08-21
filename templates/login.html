@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-center align-items-center mt-5">
+    <div class="login-card shadow-lg">
+        <div class="card-header text-center">
+            <h2 class="mb-0">🔑 Login</h2>
+        </div>
+        <div class="card-body p-4">
+            <form method="post">
+                <div class="mb-3">
+                    <label for="email" class="form-label fw-semibold">Email</label>
+                    <input type="email" class="form-control rounded-pill" id="email" name="email" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label fw-semibold">Password</label>
+                    <input type="password" class="form-control rounded-pill" id="password" name="password" required>
+                </div>
+
+                <div class="d-grid mt-4">
+                    <button class="btn gradient-btn" type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

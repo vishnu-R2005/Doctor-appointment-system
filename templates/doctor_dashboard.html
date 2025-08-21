@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0">Incoming Appointments</h2>
+        </div>
+        <div class="card-body p-0">
+            {% if appts %}
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Patient</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for a in appts %}
+                    <tr>
+                        <td>{{ a.date.strftime('%Y-%m-%d') }}</td>
+                        <td>{{ a.time.strftime('%H:%M') }}</td>
+                        <td>{{ a.patient.name }}</td>
+                        <td>{{ a.reason or '-' }}</td>
+                        <td>
+                            {% if a.status == 'pending' %}
+                                <span class="badge bg-warning text-dark">{{ a.status }}</span>
+                            {% elif a.status == 'approved' %}
+                                <span class="badge bg-success">{{ a.status }}</span>
+                            {% elif a.status == 'rejected' %}
+                                <span class="badge bg-danger">{{ a.status }}</span>
+                            {% elif a.status == 'cancelled' %}
+                                <span class="badge bg-secondary">{{ a.status }}</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="d-flex gap-2">
+                                <form method="post" action="{{ url_for('approve_appt', appt_id=a.id) }}">
+                                    <button class="btn btn-success btn-sm" type="submit">Approve</button>
+                                </form>
+                                <form method="post" action="{{ url_for('reject_appt', appt_id=a.id) }}">
+                                    <button class="btn btn-warning btn-sm" type="submit">Reject</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <div class="p-3">No appointment requests yet.</div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

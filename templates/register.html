@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-sm mx-auto" style="max-width: 620px;">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0 text-center">Create Account</h2>
+        </div>
+        <div class="reg-card-body p-4">
+            <form method="post">
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="role" class="form-label">Role</label>
+                        <select class="form-select" id="role" name="role">
+                            <option value="patient">Patient</option>
+                            <option value="doctor">Doctor</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3" id="spec-wrap">
+                    <label for="specialization" class="form-label">Specialization (for Doctors)</label>
+                    <input type="text" class="form-control" id="specialization" name="specialization" placeholder="e.g., Cardiology, Dermatology">
+                </div>
+
+                <div class="d-grid mt-3">
+                    <button class="btn btn-success btn-lg" type="submit">Create Account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

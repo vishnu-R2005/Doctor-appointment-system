@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="py-5 text-center bg-transparent">
+    <div class="row justify-content-center g-4">
+        <!-- Find a Doctor Section -->
+        <div class="col-lg-5 col-md-6">
+            <div class="p-5 rounded-4 shadow-lg text-center animate__animated animate__fadeInUp"
+                 style="background: linear-gradient(135deg, rgba(135,206,250,0.7), rgba(255,182,193,0.7));
+                        backdrop-filter: blur(12px);
+                        border: 2px solid rgba(255,255,255,0.4);">
+                <h2 class="fw-bold text-white mb-3">Find a Doctor</h2>
+                {% if specs %}
+                <p class="text-white mb-3">Doctors available with the following specializations:</p>
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    {% for s in specs %}
+                        <span class="badge bg-light text-dark px-3 py-2 rounded-pill shadow-sm">{{ s }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-white">No doctors yet. Ask an admin/doctor to register.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Get Started Section -->
+        <div class="col-lg-5 col-md-6">
+            <div class="p-5 rounded-4 shadow-lg text-center animate__animated animate__fadeInUp"
+                 style="background: linear-gradient(135deg, rgba(255,182,193,0.7), rgba(135,206,250,0.7));
+                        backdrop-filter: blur(12px);
+                        border: 2px solid rgba(255,255,255,0.4);">
+                <h2 class="fw-bold text-white mb-3">Get Started</h2>
+                <p class="text-white mb-4">Login or create an account to book appointments.</p>
+                <div class="d-flex gap-2 justify-content-center">
+                    <a href="{{ url_for('login') }}" class="btn btn-light px-4 rounded-pill shadow-sm">Login</a>
+                    <a href="{{ url_for('register') }}" class="btn btn-dark px-4 rounded-pill shadow-sm">Register</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if doctors %}
+    <div class="col-lg-10 mx-auto mt-5">
+        <div class="p-4 rounded-4 shadow-lg animate__animated animate__fadeInUp"
+             style="background: linear-gradient(135deg, rgba(135,206,250,0.7), rgba(255,182,193,0.7));
+                    backdrop-filter: blur(12px);
+                    border: 2px solid rgba(255,255,255,0.4);">
+            <h3 class="fw-bold text-white text-center mb-4">Available Doctors</h3>
+            <div class="table-responsive">
+                <table class="table table-hover text-white align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Specialization</th>
+                            <th>Contact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for d in doctors %}
+                        <tr>
+                            <td>{{ d.name }}</td>
+                            <td>{{ d.specialization or '-' }}</td>
+                            <td>{{ d.email }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
